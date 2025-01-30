@@ -12,6 +12,8 @@ On this page, there is a summary and photos of the Pawtner project and its purpo
 
 ## Report page
 On this page, users can report cases of animal abuse or lost pets 
+![image](https://github.com/user-attachments/assets/e7ce69d8-551f-4179-9b05-f0e7c675d4a6)
+
 
 ## Login page
 On this page, users can log into their account or create one. However, logging in is not required to submit reports, and they can choose to remain anonymous. 
