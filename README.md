@@ -16,7 +16,8 @@ On this page, users can report cases of animal abuse or lost pets
 
 
 ## Login page
-On this page, users can log into their account or create one. However, logging in is not required to submit reports, and they can choose to remain anonymous. 
+On this page, users can log into their account or create one. However, logging in is not required to submit reports, and they can choose to
+remain anonymous. 
 ![image](https://github.com/user-attachments/assets/46c9ae22-de0c-4269-93ae-9677460ee681)
 
 
