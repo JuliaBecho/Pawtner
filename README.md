@@ -141,11 +141,22 @@ Backend
 
 ## Home page
 On this page, there is a summary and photos of the Pawtner project and its purpose
-![image](https://github.com/user-attachments/assets/a50d4dbc-4ce5-434f-b7b9-3aa09c3a9fe8)
+
+![image](https://github.com/user-attachments/assets/06416222-3919-4357-8c93-0c3ad06d1b9b)
+
+
 
 ## Report page
 On this page, users can report cases of animal abuse or lost pets 
-![image](https://github.com/user-attachments/assets/e7ce69d8-551f-4179-9b05-f0e7c675d4a6)
+
+![image](https://github.com/user-attachments/assets/fba8258c-367e-4bec-95d6-bdf211d8dd08)
+
+## View reports
+On this page, users can view reports
+
+
+![image](https://github.com/user-attachments/assets/3b5753ce-7ec9-4e20-9ce8-fe09d286eaeb)
+
 
 
 ## Login page
@@ -153,7 +164,8 @@ Users can log into their account or create one. However, logging in is not requi
 remain anonymous. 
 
 
-![image](https://github.com/user-attachments/assets/46c9ae22-de0c-4269-93ae-9677460ee681)
+![image](https://github.com/user-attachments/assets/7db88765-cb7e-4b23-8cda-0cccee1e7bc9)
+
 
 
 
