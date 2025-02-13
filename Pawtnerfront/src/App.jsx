@@ -1,20 +1,25 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
-import Headers from './Headers'
+import Header from './Header'
 import Title from './Title'
 import Container from './Container'
 import Content from './Content'
+import Buttons from './Buttons'
+import Text from './Text'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Headers></Headers>
-      <Title></Title>
+      <Header></Header>
+      <Title></Title> 
+      <Buttons></Buttons>
       <Container></Container>
+     
       <Content></Content>
+      <Text></Text>
+     
     </>
   )
 }
