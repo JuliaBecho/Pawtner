@@ -4,14 +4,22 @@ import rat from './assets/hamster.jpg';
 import bunny from './assets/coelho.jpg';
 
 export default function Title(){
+
+const backendURl = import.meta.env.VITE_PAWTNERBACKEND
+console.log(backendURl)
+    
     return ( 
-        <div className="Container">
+        
+        <div>
+            
+            <div className="Container">
              <img src= {cat} alt="" />
              <img src= {dog} alt="" />
              <img src= {rat} alt="" />
              <img src= {bunny} alt="" /> 
 
             
-        </div>
+        </div></div>
+        
     );
 }
