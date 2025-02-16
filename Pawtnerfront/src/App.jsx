@@ -7,6 +7,7 @@ import Container from './Container'
 import Content from './Content'
 import Buttons from './Buttons'
 import Text from './Text'
+import Report from './Report'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -16,9 +17,9 @@ function App() {
       <Title></Title> 
       <Buttons></Buttons>
       <Container></Container>
-     
       <Content></Content>
       <Text></Text>
+      <Report></Report>
      
     </>
   )

@@ -80,10 +80,70 @@ img {
 }
 
 .text-container p{
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .text-container li{
   margin-bottom: 20px;
 }
 
+.page-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1280px;
+  height: 720px;
+  padding: 20px;
+}
+
+.sidebar{
+  width: 300px;
+  height: 500px;
+  background: #d9d9d9;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.right-sidebar{
+  width: 200px;
+  height: 300px;
+  margin-left: 10px;
+  margin-top: 20px;
+  
+}
+
+.report-button{
+  background: rgb(59, 59, 59);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 160px;
+  height: 40px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.report-button:hover{
+  background: #8f8f8f;
+}
+
+.location-icon{
+  width: 250px;
+  height: 250px;
+  margin-top: 50px;
+}
+
+.sidebar p{
+  font-size: 18px;
+  font-weight: bold;
+  
+}
