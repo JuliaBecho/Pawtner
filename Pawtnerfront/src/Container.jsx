@@ -1,7 +1,4 @@
-import cat from './assets/gato.jpg';
-import dog from './assets/cao.jpg';
-import rat from './assets/hamster.jpg';
-import bunny from './assets/coelho.jpg';
+import gif from './assets/gifcat.gif';
 
 export default function Title(){
 
@@ -13,10 +10,13 @@ console.log(backendURl)
         <div>
             
             <div className="Container">
-             <img src= {cat} alt="" />
+            <img src={gif} alt="GIF" className='gif' />
+
+
+             {/* <img src= {cat} alt="" />
              <img src= {dog} alt="" />
              <img src= {rat} alt="" />
-             <img src= {bunny} alt="" /> 
+             <img src= {bunny} alt="" />  */}
             
         </div></div>
         

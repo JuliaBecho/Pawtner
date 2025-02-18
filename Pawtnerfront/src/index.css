@@ -5,6 +5,7 @@
 
 body{
   font-family: "Delius Swash Caps";
+  background: linear-gradient(to bottom, #dadada, #e0e0e0);
 }
 
 img {
@@ -19,14 +20,14 @@ img {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-left: 1500px;
+  margin-left: 1400px;
 }
 
 .settings-button{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 15px;
   background: #cfcece;
   border: 1px solid #ccc;
   border-radius: 15px;
@@ -38,7 +39,7 @@ img {
 .login-button{
   display: flex;
   gap: 5px;
-  padding: 8px 12px;
+  padding: 15px 30px;
   background: #cfcece;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -54,24 +55,21 @@ img {
 }
 
 .Container {
-  background-color: #aaafbf;
   /* height: 230px; */
   width: fit-content;
   margin: 0 auto;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  border-radius: 10px;
-  flex-wrap: wrap;
+
 }
 
 .Container img {
-  width: 150px;
-  height: 150px;
+  width: 700px;
+  height: 250px;
   object-fit: cover;
-  border-radius: 10px;
-  padding: 40px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
+  border-radius: 50px;
+  padding: 20px;
 
 }
 
@@ -134,7 +132,7 @@ img {
 .sidebar{
   width: 300px;
   height: 500px;
-  background: #d9d9d9;
+  background: #949394bd;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
@@ -180,6 +178,76 @@ img {
 .sidebar p{
   font-size: 18px;
   font-weight: bold;
+  
+}
+
+.report-container{
+  background: #949394bd;
+  width: 400px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin-top: 400px;
+}
+
+.Title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+
+}
+
+label{
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+input, select {
+  width: 400px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #dad8d8;
+  font-size: 14px;
+}
+
+input[type="description"]{
+  height: 150px;
+}
+
+input[type="checkbox"]{
+  margin-right: 10px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.checkbox-group input{
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+}
+
+button{
+  padding: 10px;
+}
+
+button:hover{
+  background: #747474;
   
 }
 
