@@ -10,19 +10,23 @@ import Text from './Text'
 import Report from './Report'
 function App() {
   const [count, setCount] = useState(0)
-
+  const [animal, setAnimal] = useState("home");
   return (
-    <>
+    <div>
       <Header></Header>
       <Title></Title> 
-      <Buttons></Buttons>
-      <Container></Container>
-      <Content></Content>
-      <Text></Text>
-      <Report></Report>
-     
-    </>
-  )
+      <div className="button-group">
+        <button onClick={() => setAnimal("home")} className="button">Home</button>
+        <button  onClick={() => setAnimal("report")} className="button">Report</button>
+        <button  onClick={() => setAnimal("view")} className="button">View</button>
+       
+    </div>
+     <div>
+          {animal === "home" && (<div><Container></Container><Content></Content><Text></Text></div>)}
+          {animal === "report" && <Report/>}
+        </div>
+    </div>
+  );
 }
 
 export default App

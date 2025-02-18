@@ -15,6 +15,39 @@ img {
   display: flex;
 }
 
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 1500px;
+}
+
+.settings-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: #cfcece;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background 0.2;
+  font-size: 16px;
+}
+
+.login-button{
+  display: flex;
+  gap: 5px;
+  padding: 8px 12px;
+  background: #cfcece;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 14px;
+
+}
+
 .Title {
   text-align: center;
   margin-bottom: 50px;
@@ -22,13 +55,14 @@ img {
 
 .Container {
   background-color: #aaafbf;
-  height: 230px;
+  /* height: 230px; */
   width: fit-content;
   margin: 0 auto;
   align-items: center;
   justify-content: center;
   gap: 20px;
   border-radius: 10px;
+  flex-wrap: wrap;
 }
 
 .Container img {
@@ -38,6 +72,7 @@ img {
   border-radius: 10px;
   padding: 40px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
+
 }
 
 .Content {
@@ -147,3 +182,4 @@ img {
   font-weight: bold;
   
 }
+

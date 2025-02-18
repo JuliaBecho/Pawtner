@@ -32,24 +32,10 @@ app.post("/", (req, res) => {
 
 
 
-app.delete("/delete/:id", async (req, res) => {
-    const docId = req.params.id;
-    try {
-        const docRef = db.collection("animals").doc(docId);
-        const doc = await docRef.get();
+app.delete("/",(req, res)=>{
+    res.send("delete is working!")
+})
 
-        if (!doc.exists) {
-            return res.status(404).json({ error: "Documento não encontrado!" });
-        }
-
-        await docRef.delete();
-        console.log(`Documento ${docId} deletado.`);
-        res.json({ message: `Documento ${docId} deletado com sucesso.` });
-    } catch (error) {
-        console.error("Erro ao deletar documento:", error);
-        res.sendStatus(500);
-    }
-});
 
 
 app.put("/",(req, res)=>{

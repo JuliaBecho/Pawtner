@@ -17,7 +17,6 @@ console.log(backendURl)
              <img src= {dog} alt="" />
              <img src= {rat} alt="" />
              <img src= {bunny} alt="" /> 
-
             
         </div></div>
         
