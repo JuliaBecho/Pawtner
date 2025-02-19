@@ -1,5 +1,5 @@
 
-import PawtnerLogo from './assets/logopawtner.jpg';
+import PawtnerLogo from './assets/logopawtner.png';
 import {FaCog, FaSignInAlt} from "react-icons/fa";
 export default function Header(){
     return  (
