@@ -26,11 +26,22 @@ const[formData, setFormData] = useState({
         });
     };
 
+    const handleFileChange = (e) => {
+        setFormData({...formData, image: e.target.files[0]
+
+        });
+    };
+
 const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Submitted:",formData);
     axios
-    .post("http://localhost:3000/reports", formData)
+    .post("http://localhost:3000/reports", formData,{
+        headers:{
+            "Content-Type":"multipart/form-data",
+        },
+    })
+    
     .then((response)=>{
         alert("seus dados foram salvos");
         setFormData({
@@ -40,6 +51,7 @@ const handleSubmit = (e) => {
             date:"",
             phone:"",
             description:"",
+            image:null,
             terms:false,
             terms2:false,
         });
@@ -109,6 +121,9 @@ const handleSubmit = (e) => {
                 <label htmlFor="description">Description:</label>
                 <input value={formData.description} type="description" id='description' name='description' onChange={handleChange}  required />
                 <br/><br />
+
+                <label htmlFor="image">Picture:</label>
+                <input type="file" id="image" name='image' accept='image/*' onChange={handleFileChange} required />
 
                 {/*Checkbox for agreeing to include phone number*/}
                 <div className='checkbox-group'>

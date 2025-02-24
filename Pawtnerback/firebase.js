@@ -8,10 +8,13 @@ const serviceAccount = JSON.parse(
 
 
 admin.initializeApp({
+  storageBucket: "pawtner-b4740.firebasestorage.app",
   credential: admin.credential.cert(serviceAccount)
 });
 
+const bucket = admin.storage().bucket();
+
 const db = admin.firestore();
-export default db;
+export {db, bucket};
 
 
