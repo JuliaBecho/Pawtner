@@ -11,12 +11,6 @@ console.log(backendURl)
             
             <div className="Container">
             <img src={gif} alt="GIF" className='gif' />
-
-
-             {/* <img src= {cat} alt="" />
-             <img src= {dog} alt="" />
-             <img src= {rat} alt="" />
-             <img src= {bunny} alt="" />  */}
             
         </div></div>
         

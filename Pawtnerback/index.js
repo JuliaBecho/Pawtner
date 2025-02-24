@@ -1,9 +1,10 @@
-import express from "express"// Importing Express framework for creating the server 
 import db from "./firebase.js";
-
+import express, {json} from "express"
+import cors from "cors";
 
 const app = express();
-
+app.use(json()); 
+app.use(cors()); 
 //Defining a GET endpoint to fetch all animals from the Firebase Firestore database 
 app.get("/", async(req, res)=>{
     try{
@@ -22,14 +23,10 @@ app.get("/", async(req, res)=>{
 });
 
 //Defining a POST endpoint to add a new animal to the database 
-app.post("/", (req, res) => {
-    const animal = {
-        nickname: 'Ethan',
-        description: 'An adorable cat',
-        data: new Date()
-    };
+app.post("/reports", (req, res) => {
+    console.log(req.body)
 
-    db.collection('animals').add(animal)
+    db.collection('reports').add(req.body)
         .then((docRef) => {
             console.log('Documento adicionado com ID:', docRef.id);
             res.send({ id: docRef.id });

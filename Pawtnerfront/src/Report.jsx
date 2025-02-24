@@ -2,6 +2,7 @@
 import Doggif from './assets/dog.gif'
 import { useState } from 'react'
 import InputMask from "react-input-mask"
+import axios from "axios"
 
 
 export default function Report(){
@@ -28,6 +29,27 @@ const[formData, setFormData] = useState({
 const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Submitted:",formData);
+    axios
+    .post("http://localhost:3000/reports", formData)
+    .then((response)=>{
+        alert("seus dados foram salvos");
+        setFormData({
+            type:"lost",
+            animal:"",
+            breed:"",
+            date:"",
+            phone:"",
+            description:"",
+            terms:false,
+            terms2:false,
+        });
+        console.log(response.data);
+    })
+    .catch((error)=>{
+        alert("algo deu errado");
+        console.log(error);
+    });
+
 
 };
 
@@ -72,28 +94,16 @@ const handleSubmit = (e) => {
                 <label htmlFor="date">Date:</label>
                 <input value={formData.date} type="date" id='date' name='date' onChange={handleChange}  required />
                 <br/><br />
-                
-
-
-
-
+            
                 {/*Phone number input field for user contact*/}
                 <label htmlFor="phone">Phone Number</label>
                 <input value={formData.phone} type="tel" id='phone' name='phone' onChange={handleChange}  required />
-                
-                                
                 
                 {/* <InputMask mask="(99) 999-9999999" id="phone" name="phone" value={formData.phone} onChange={handleChange} placeholder= "(99) 999 9999999" required>
                 {(inputProps) => <input{...inputProps} type='tel'/>}
                 </InputMask> */}
 
                 <br /><br />
-
-
-
-
-
-
 
                 {/*Description input field */}
                 <label htmlFor="description">Description:</label>
