@@ -11,7 +11,7 @@ const[formData, setFormData] = useState({
     animal:"",
     breed:"",
     date:"",
-    phone:"",
+    email:"",
     description:"",
     terms:false,
     terms2:false,
@@ -49,7 +49,7 @@ const handleSubmit = (e) => {
             animal:"",
             breed:"",
             date:"",
-            phone:"",
+            email:"",
             description:"",
             image:null,
             terms:false,
@@ -108,12 +108,9 @@ const handleSubmit = (e) => {
                 <br/><br />
             
                 {/*Phone number input field for user contact*/}
-                <label htmlFor="phone">Phone Number</label>
-                <input value={formData.phone} type="tel" id='phone' name='phone' onChange={handleChange}  required />
+                <label htmlFor="email">Email:</label>
+                <input value={formData.email} type="email" id='email' name='email' onChange={handleChange}  required />
                 
-                {/* <InputMask mask="(99) 999-9999999" id="phone" name="phone" value={formData.phone} onChange={handleChange} placeholder= "(99) 999 9999999" required>
-                {(inputProps) => <input{...inputProps} type='tel'/>}
-                </InputMask> */}
 
                 <br /><br />
 
@@ -128,7 +125,7 @@ const handleSubmit = (e) => {
                 {/*Checkbox for agreeing to include phone number*/}
                 <div className='checkbox-group'>
                     <input checked={formData.terms} type="checkbox" id='terms' name='terms' onChange={handleChange}  required />
-                <label htmlFor="terms">I agree to include my cell phone number for contact</label>
+                <label htmlFor="terms">I agree to include my email for contact</label>
                 <br /><br />
                 </div>
                 

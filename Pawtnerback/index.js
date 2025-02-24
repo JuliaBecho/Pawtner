@@ -10,19 +10,20 @@ app.use(cors());
 
 const upload = multer({storage: multer.memoryStorage()});
 //Defining a GET endpoint to fetch all animals from the Firebase Firestore database 
-app.get("/", async(req, res)=>{
+app.get("/animals", async(req, res)=>{
     try{
         //Fetching all documents from the "animals" collection
         const snapshot = await db.collection("animals").get();
 
         //Mapping the documents to an array, including their ID
-        const animals = snapshots.docs.map (doc =>({id:doc.id, ...doc.data()}));
+        const animals = snapshot.docs.map (doc =>({id:doc.id, ...doc.data()}));
 
         //Sending the list of animals as JSON response 
         res.json(animals);
     } catch(error){
         //Loggin and handling errors 
-        console.error("Error", error)
+        console.error("Error fetching animals", error)
+        res.status(500).json({error:"Internal Server Error"});
     }
 });
 
@@ -57,19 +58,54 @@ app.post("/reports", upload.single("image"), async (req, res) => {
 
 
 
-app.delete("/",(req, res)=>{
-    res.send("delete is working!")
-})
+app.delete("/animals/:id", async (req, res)=>{
+    try {
+        const {id} = req.params;
+
+        const docRef = db.collection("animals").doc(id);
+        const doc = await docRef.get();
+
+        if (!doc.exists) {
+            return res.status(404).json({error: "Document not found"});
+        }
+
+        await docRef.delete();
+
+        res.json({message: "Animal deleted successfully", id});
+    }catch (error) {
+        console.error("Error deleting animal:", error);
+        res.status(500).json({error: "Internal Server Error"});
+    }
+});
 
 
 
-app.put("/",(req, res)=>{
-    res.send("Put is working!")
-})
+app.put("/animals/:id", async (req, res)=>{
+    try{
+        const {id} = req.params;
+        const updatedData = req.body;
 
+        if(!updatedData || Object.keys(updatedData).length === 0){
+            return res.status(400).json({error: "No data provided for update"});
+        }
 
-app.listen(3000,()=>{
-    console.log("server is running on port 3000");
-    
-})
+        const docRef = db.collection("animals").doc(id);
+        const doc = await docRef.get();
+
+        if(!doc.exists){
+            return res.status(404).json({error:"Document not found"});
+        }
+
+        await docRef.update(updatedData);
+
+        res.json({message: "Animal updated successfully!", id});
+    }catch(error){
+        console.error("Error updating animal:", error);
+        res.status(500).json({error:"Internal Server Error"});
+    }
+});
+
+app.listen(3000, () =>{
+    console.log("Server is running on port 3000");
+});
 
