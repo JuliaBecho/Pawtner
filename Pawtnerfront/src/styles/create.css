@@ -1,0 +1,77 @@
+.create-container{
+    width: 80%;
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #b3b3b3;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.create-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.create-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px;
+}
+
+.create-form{
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    text-align: left;
+}
+
+.create-form label{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.create-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #ddd;
+    font-size: 14px;
+    outline: none;
+}
+
+.create-button {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.create-button:hover{
+    background: #555;
+}
+
+.create-image {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dogcomputer{
+    width: 90%;
+    max-width: 300px;
+    border-radius: 200px;
+}
+

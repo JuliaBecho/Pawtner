@@ -4,5 +4,28 @@
 
 body{
   font-family: "Delius Swash Caps";
-  background: linear-gradient(to bottom, #dadada, #e0e0e0);
+  background: #d3d3d3;
 }
+
+
+
+
+/* body{
+  font-family: "Delius Swash Caps";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #d3d3d3;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.container{
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+} */
