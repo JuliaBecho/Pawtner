@@ -1,6 +1,22 @@
 
+@import "./styles/global.css";
+@import "./styles/header.css";
+@import "./styles/title.css";
+@import "./styles/container.css";
+@import "./styles/content.css";
+@import "./styles/buttons.css";
+@import "./styles/report.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
+
+
+
+
+
+
+
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
 
 
 body{
@@ -49,13 +65,15 @@ img {
 
 }
 
+
+
 .Title {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 .Container {
-  /* height: 230px; */
+  
   width: fit-content;
   margin: 0 auto;
   align-items: center;
@@ -72,6 +90,9 @@ img {
   padding: 20px;
 
 }
+
+
+
 
 .Content {
   text-align: center;
@@ -120,7 +141,8 @@ img {
   margin-bottom: 20px;
 }
 
-.page-container{
+
+.page-container{ 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -250,4 +272,4 @@ button:hover{
   background: #747474;
   
 }
-
+ */

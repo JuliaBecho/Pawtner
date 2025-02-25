@@ -1,4 +1,6 @@
-import gif from './assets/gifcat.gif';
+
+import "../styles/container.css";
+import gif from '../assets/gifcat.gif';
 
 export default function Title(){
 

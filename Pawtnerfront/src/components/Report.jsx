@@ -1,8 +1,10 @@
 
-import Doggif from './assets/dog.gif'
+import Doggif from '../assets/dog.gif'
 import { useState } from 'react'
 import InputMask from "react-input-mask"
 import axios from "axios"
+import "../styles/report.css";
+
 
 
 export default function Report(){
@@ -78,7 +80,7 @@ const handleSubmit = (e) => {
 
             {/*Report submission form container*/}
             <div className='report-container'>
-                <h2 className='title'>Submit a report</h2>
+                <h2 className='titles'>Submit a report</h2>
 
                 {/*Form for submitting a report*/}
                 <form onSubmit={handleSubmit}>

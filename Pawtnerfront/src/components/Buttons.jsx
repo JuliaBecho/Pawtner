@@ -1,3 +1,5 @@
+
+import "../styles/buttons.css";
 export default function Buttons(){
     return( <div className="button-group">
         <button className="button">Home</button>

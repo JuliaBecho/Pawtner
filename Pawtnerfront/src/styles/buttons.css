@@ -1,0 +1,25 @@
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    gap: 8px;
+  }
+  
+  .button {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 10px;
+    font-size: 19px;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background: #f0f0f0;
+  }
+  
+  .button:focus{
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }

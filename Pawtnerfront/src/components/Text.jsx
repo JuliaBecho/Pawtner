@@ -1,3 +1,5 @@
+
+import "../styles/content.css";
 export default function Text(){
 
     return(

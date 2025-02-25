@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import Header from './Header'
-import Title from './Title'
-import Container from './Container'
-import Content from './Content'
-import Buttons from './Buttons'
-import Text from './Text'
-import Report from './Report'
+import Header from './components/Header'
+import Title from './components/Title'
+import Container from './components/Container'
+import Content from './components/Content'
+import Buttons from './components/Buttons'
+import Text from './components/Text'
+import Report from './components/Report'
 
 function App() {
   const [animal, setAnimal] = useState("home"); //Tracks which section is being displayed

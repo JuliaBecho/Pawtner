@@ -1,0 +1,130 @@
+.report-container{
+    background: #949394bd;
+    width: 450px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-top: 150px;
+    align-self: flex-start;
+  }
+
+.page-container{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  width: 1000px;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+  .sidebar{
+    width: 320px;
+    height: auto;
+    background: #949394bd;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-left: 50px;
+    margin-top: 150px;
+  }
+
+.sidebar img{
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+ 
+}
+
+.sidebar p{
+  font-size: 18px;
+  font-weight: bold;
+  
+}
+  
+  .report-button{
+    background: rgb(59, 59, 59);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 160px;
+    height: 40px;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  
+  .report-button:hover{
+    background: #8f8f8f;
+  }
+
+  
+  form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+  }
+  
+ .titles{
+  margin-bottom: 45px;
+  font-size: 30px;
+ }
+
+  label{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  
+  input, select {
+    width: 400px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #dad8d8;
+    font-size: 14px;
+    
+  }
+  
+  input[type="description"]{
+    height: 150px;
+  }
+  
+  input[type="checkbox"]{
+    margin-right: 10px;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .checkbox-group input{
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    vertical-align: middle;
+  }
+  
+  .submitbutton{
+    padding: 10px;
+  }
+  
+  button:hover{
+    background: #747474;
+    
+  }
+  

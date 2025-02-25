@@ -1,0 +1,8 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
+
+
+body{
+  font-family: "Delius Swash Caps";
+  background: linear-gradient(to bottom, #dadada, #e0e0e0);
+}
