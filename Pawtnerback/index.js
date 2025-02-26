@@ -3,6 +3,7 @@ import express, {json} from "express"
 import cors from "cors";
 import multer from "multer";
 import{v4 as uuidv4}from 'uuid';
+import { verifyToken } from "./auth-middleware.js";
 
 const app = express();
 app.use(json()); 
@@ -28,7 +29,7 @@ app.get("/animals", async(req, res)=>{
 });
 
 //Defining a POST endpoint to add a new animal to the database 
-app.post("/reports", upload.single("image"), async (req, res) => {
+app.post("/reports", verifyToken, upload.single("image"), async (req, res) => {
     console.log(req.body)
 
     let imageUrl = null; 
@@ -44,8 +45,8 @@ app.post("/reports", upload.single("image"), async (req, res) => {
         imageUrl = `https://storage.googleapis.com/${bucket.name}/${fileName}`
     }
 
-
-    db.collection('reports').add({...req.body, imageUrl})
+    const {user_id} = req.user;
+    db.collection('reports').add({...req.body, imageUrl, user_id})
         .then((docRef) => {
             console.log('Documento adicionado com ID:', docRef.id);
             res.send({ id: docRef.id });
