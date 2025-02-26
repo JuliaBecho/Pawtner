@@ -1,11 +1,29 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
 
+:root {
+  --primary-bg: #c2dceb;
+  --secondary: #82aed4;
+  --tertiary: #1d2d50;
+  --text-color: #1d2d50;
+  --hover-color: #5a9ec2;
+}
 
 body{
   font-family: "Delius Swash Caps";
-  background: #d3d3d3;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+
 }
+
+button{
+  background-color: var(--secondary);
+  border: none;
+}
+
+button:hover {
+  background-color: var(--hover-color);
+};
 
 
 

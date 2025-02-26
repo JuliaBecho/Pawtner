@@ -9,15 +9,12 @@
   .button {
     padding: 8px 16px;
     border: 1px solid #ccc;
-    background: white;
+    
     border-radius: 10px;
     font-size: 19px;
     cursor: pointer;
   }
 
-  .button:hover {
-    background: #f0f0f0;
-  }
   
   .button:focus{
     outline: none;

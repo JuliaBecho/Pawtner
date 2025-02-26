@@ -83,9 +83,12 @@ const handleSubmit = (e) => {
                 <h2 className='titles'>Submit a report</h2>
 
                 {/*Form for submitting a report*/}
-                <form onSubmit={handleSubmit}>
-                    
-                    {/*Dropdown menu for selecting the type of report*/}
+                <form onSubmit={handleSubmit} className='report-form'>
+
+                <div className='form-colums'>
+
+<div className='form-left'>
+
                     <label htmlFor="type">Type of report:</label>
                  <select value={formData.type} name="type" id="type" onChange={handleChange}  required>
                     <option value="lost">Lost animal</option>
@@ -114,16 +117,21 @@ const handleSubmit = (e) => {
                 <input value={formData.email} type="email" id='email' name='email' onChange={handleChange}  required />
                 
 
+                </div>
+                    
                 <br /><br />
 
-                {/*Description input field */}
+            <div className='form-right'>
+
+                 {/*Description input field */}
                 <label htmlFor="description">Description:</label>
-                <input value={formData.description} type="description" id='description' name='description' onChange={handleChange}  required />
-                <br/><br />
+                <textarea name="description" id="description" value={formData.description} onChange={handleChange} required></textarea>
+                {/* <input value={formData.description} type="description" id='description' name='description' onChange={handleChange}  required />
+                <br/><br /> */}
 
                 <label htmlFor="image">Picture:</label>
                 <input type="file" id="image" name='image' accept='image/*' onChange={handleFileChange} required />
-
+                <br /><br />
                 {/*Checkbox for agreeing to include phone number*/}
                 <div className='checkbox-group'>
                     <input checked={formData.terms} type="checkbox" id='terms' name='terms' onChange={handleChange}  required />
@@ -132,11 +140,13 @@ const handleSubmit = (e) => {
                 </div>
                 
                 {/*Checkbox for agreeing to be contacted*/}
-                <div className='checkbox-group'> 
-                    <input checked={formData.terms2} type="checkbox" id='terms2' name='terms2' onChange={handleChange}  required />
-                <label htmlFor="terms2">I agree to be contacted for more information or updates</label>
-                <br /><br />
+               
                 </div>
+
+                
+
+            </div>
+               
                
 
                 <button className='submitbutton' type='submit'>Report</button>
