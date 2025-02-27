@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/login.css";
 import InloveCatgif from "../assets/gatoapaixonado.gif";
 import axios from "axios";
-
+import { useState } from 'react'
 
 export default function Login({setAnimal}){
     const [formData,setFormData] = useState({

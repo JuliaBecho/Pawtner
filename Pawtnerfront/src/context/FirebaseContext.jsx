@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState} from "react"
-import {initializeApp} from "firbase/app";
+import {initializeApp} from "firebase/app";
 import {
     getAuth,
     createUserWithEmailAndPassword,

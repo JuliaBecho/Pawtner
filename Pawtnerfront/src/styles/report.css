@@ -1,5 +1,5 @@
 .report-container{
-    background: #949394bd;
+    background: #82aed4;
     width: 700px;
     padding: 30px;
     border-radius: 15px;
@@ -20,7 +20,7 @@
   .sidebar{
     width: 320px;
     height: auto;
-    background: #949394bd;
+    background: #82aed4;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -45,7 +45,7 @@
 }
   
   .report-button{
-    background: rgb(59, 59, 59);
+    background: #1d2d50;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -59,9 +59,7 @@
     margin-top: 20px;
   }
   
-  .report-button:hover{
-    background: #8f8f8f;
-  }
+  
 
   select{
     
@@ -162,6 +160,6 @@
     color: white;
     border-radius: 8px;
     font-size: 16px;
-    background: #333;
+    background: #1d2d50;
   }
   
