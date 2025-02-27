@@ -11,19 +11,19 @@ app.use(cors());
 
 const upload = multer({storage: multer.memoryStorage()});
 //Defining a GET endpoint to fetch all animals from the Firebase Firestore database 
-app.get("/animals", async(req, res)=>{
+app.get("/reports", async(req, res)=>{
     try{
-        //Fetching all documents from the "animals" collection
-        const snapshot = await db.collection("animals").get();
+        //Fetching all documents from the "reports" collection
+        const snapshot = await db.collection("reports").get();
 
         //Mapping the documents to an array, including their ID
-        const animals = snapshot.docs.map (doc =>({id:doc.id, ...doc.data()}));
+        const reports = snapshot.docs.map (doc =>({id:doc.id, ...doc.data()}));
 
-        //Sending the list of animals as JSON response 
-        res.json(animals);
+        //Sending the list of reports as JSON response 
+        res.json(reports);
     } catch(error){
         //Loggin and handling errors 
-        console.error("Error fetching animals", error)
+        console.error("Error fetching reports", error)
         res.status(500).json({error:"Internal Server Error"});
     }
 });
@@ -59,11 +59,11 @@ app.post("/reports", verifyToken, upload.single("image"), async (req, res) => {
 
 
 
-app.delete("/animals/:id", async (req, res)=>{
+app.delete("/reports/:id", async (req, res)=>{
     try {
         const {id} = req.params;
 
-        const docRef = db.collection("animals").doc(id);
+        const docRef = db.collection("reports").doc(id);
         const doc = await docRef.get();
 
         if (!doc.exists) {

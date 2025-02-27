@@ -62,8 +62,9 @@ export const FirebaseProvider = ({children}) => {
     }
 
     const getToken = async() => {
+
         try{
-            await getIdToken(user);
+            return await getIdToken(user);
         }catch(error){
             throw error;
         }

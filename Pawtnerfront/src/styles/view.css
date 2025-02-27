@@ -1,5 +1,5 @@
 .view-container{
-    width: 80%;
+    width: 0%;
     margin: 50px auto;
     text-align: center;
 }
@@ -30,6 +30,11 @@
     height: 250px;
     background: #ffffff;
     margin-bottom: 10px;
+}
+
+.image-placeholder img{
+    width: 200px;
+    
 }
 
 .report-info p {

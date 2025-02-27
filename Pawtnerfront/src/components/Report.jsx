@@ -4,10 +4,13 @@ import { useState } from 'react'
 import InputMask from "react-input-mask"
 import axios from "axios"
 import "../styles/report.css";
+import { userFirebase } from '../context/FirebaseContext';
 
 
 
 export default function Report(){
+    const{user,getToken} = userFirebase();
+
 const[formData, setFormData] = useState({
     type:"lost",
     animal:"",
@@ -34,13 +37,18 @@ const[formData, setFormData] = useState({
         });
     };
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Submitted:",formData);
+
+    const token = await getToken();
+    console.log("Token", token);
+
     axios
     .post("http://localhost:3000/reports", formData,{
         headers:{
             "Content-Type":"multipart/form-data",
+            "Authorization" : `Bearer ${token}`,
         },
     })
     

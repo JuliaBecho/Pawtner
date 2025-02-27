@@ -3,8 +3,12 @@ import "../styles/login.css";
 import InloveCatgif from "../assets/gatoapaixonado.gif";
 import axios from "axios";
 import { useState } from 'react'
+import {userFirebase} from "../context/FirebaseContext";
 
 export default function Login({setAnimal}){
+    const {login} = userFirebase();
+    
+
     const [formData,setFormData] = useState({
         email: "",
         password:""
@@ -21,9 +25,17 @@ export default function Login({setAnimal}){
     const handleSubmit = async(e) => {
         e.preventDefault();
         try{
-            const response = await axios.post("http://localhost:3000/login", formData);
+            await login(formData.email, formData.password);
+
+
+            setFormData({
+                email:"",
+                password:"",
+                
+            });
+
             alert("Login successful!");
-            console.log("User Data:", response.data);
+            
         }catch (error){
             alert("Login failed.Please check your credentials");
             console.error("Login Error", error);
@@ -35,6 +47,7 @@ export default function Login({setAnimal}){
 
     return(
         <div className="login-container">
+      
             <h2 className="login-title">Login Form</h2>
             <div className="login-content">
                 <form className="login-form" onSubmit={handleSubmit}>

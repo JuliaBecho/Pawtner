@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import "../styles/create.css"
 import DogComputer from "../assets/corgicomputer.gif"
 import axios from "axios";
+import {userFirebase} from "../context/FirebaseContext";
 
 
 export default function Create(){
+    const {signup} = userFirebase();
+
    const [formData, setFormData] = useState({
     email:"",
     password:"",
@@ -27,24 +30,21 @@ export default function Create(){
         return;
     }
     try{
-        const response = await axios.post ("http://localhost:3000/signup", {
-            email: formData.email,
-            password:formData.password
-        });
+
+       await signup(formData.email, formData.password);
 
         alert("Account created successfully!");
-        console.log("User Data:", response.data);
-
 
         setFormData({
             email:"",
             password:"",
-            confirmPassword:"",
+            confirmpassword:"",
         });
     }catch (error){
         alert("Failed to crate account. Please try again.");
         console.error("Singup Error:", error);
     }
+
    };
     return(
        <div className="create-container">
@@ -53,13 +53,13 @@ export default function Create(){
         <div className="create-content">
             <form className="create-form" onSubmit={handleSubmit}>
                 <label>Email:</label>
-                <input type="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} required />
+                <input type="email" name="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} required />
 
                 <label>Password:</label>
-                <input type="password" value={formData.password} onChange={handleChange}  placeholder="Enter your password" required />
+                <input type="password" name="password" value={formData.password} onChange={handleChange}  placeholder="Enter your password" required />
 
                  <label>Confirm your password:</label>
-                <input type="password" value={formData.confirmpassword} onChange={handleChange}  placeholder="Confirm your password" required />
+                <input type="password" name="confirmpassword" value={formData.confirmpassword} onChange={handleChange}  placeholder="Confirm your password" required />
 
                 <button type="submit" className="create-button">CREATE</button>
             </form>
