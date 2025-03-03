@@ -1,13 +1,25 @@
 
-import "../styles/content.css";
-export default function Text(){
-
+export default function Text({textSectionRef}){
     return(
-        <div className="text-container">
-            <p>Animal abuse and the plight of stray animals are pressing issues in many communities worldwide. Stray animals often lack access to shelter, food, and medical care, while cases of abuse frequently go unreported due to the absence of accessible tools for intervention. These challenges not only affect the animals but also reflect broader societal issues that demand immediate attention.
+        <div ref={textSectionRef} className="text-section">
+            <p>Animal abuse and the struggle of stray animals are urgent issues affecting communities 
+
+worldwide. Countless animals roam the streets without shelter, food, or medical care, while 
+
+many cases of abuse go unnoticed due to a lack of accessible reporting tools. These challenges 
+
+extend beyond animals—they reflect deeper societal issues that demand immediate action.
             </p>
 
-            <p>Pawtner was conceived to address these critical problems by empowering individuals and communities to take action. Our platform provides a comprehensive solution for reporting animal abuse, reuniting lost pets with their owners, and connecting stray animals with rescue organizations. By leveraging technology, we aim to create a safer and more compassionate environment for animals in need.</p>
+            <p>✦With Pawtner, YOU can make a difference✦</p>
+
+            <p>
+We’ve created an innovative platform that connects compassionate individuals who want to take
+
+ action for animal welfare. Our mission is to make animal rescue and protection faster, more 
+
+efficient, and more accessible to everyone.
+</p>
 
             <p>Through Pawtner, users can:</p>
 
@@ -21,8 +33,9 @@ export default function Text(){
             </p> 
             
             <p>Pawtner is more than just an app—it is a movement to bridge the gap between compassion and action. Together, we can make a difference, one report at a time. Join us in creating a world where every animal is safe, cared for, and loved.</p>
+            <p>Every report, every share,every rescue matters!
+</p>
         </div>
-   
-
-)} 
+    )
+} 
 

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Header from './components/Header'
 import Title from './components/Title'
 import Container from './components/Container'
-import Content from './components/Content'
+
 import Buttons from './components/Buttons'
 import Text from './components/Text'
 import Report from './components/Report'
@@ -30,7 +30,7 @@ function App() {
     </div>
      <div>
           {/* If 'home' is selected, display the home components*/}
-          {animal === "home" && (<div><Container></Container><Content></Content><Text></Text></div>)}
+          {animal === "home" && (<div><Container></Container></div>)}
           
           {/* If 'report' is selected, display the Report component*/}
           {animal === "report" && <Report/>}
