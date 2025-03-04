@@ -24,7 +24,7 @@
     gap: 15px;
   }
   
-  .settings-button,  .login-button{
+  .settings-button,  .login-button, .logout-button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,6 +35,8 @@
     cursor: pointer;
     transition: background 0.2;
     font-size: 16px;
+    gap: 10px;
   }
   
+ 
 

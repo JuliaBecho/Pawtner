@@ -1,5 +1,5 @@
 
-import Doggif from '../assets/dog.gif'
+import catphone from '../assets/catphone.png'
 import { useState } from 'react'
 import InputMask from "react-input-mask"
 import axios from "axios"
@@ -53,7 +53,7 @@ const handleSubmit = async (e) => {
     })
     
     .then((response)=>{
-        alert("seus dados foram salvos");
+        alert("Your report has been sent");
         setFormData({
             type:"lost",
             animal:"",
@@ -68,7 +68,7 @@ const handleSubmit = async (e) => {
         console.log(response.data);
     })
     .catch((error)=>{
-        alert("algo deu errado");
+        alert("Something went wrong");
         console.log(error);
     });
 
@@ -82,7 +82,7 @@ const handleSubmit = async (e) => {
             <div className="sidebar">
                 <p>Please select the place you want to report and click on "Report Now!"</p>
                 <button className="report-button">REPORT NOW!</button>
-                <img src= {Doggif} alt="" className="location-icon"/>
+                <img src= {catphone} alt="" className="location-icon"/>
             </div>
 
 

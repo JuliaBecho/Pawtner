@@ -48,7 +48,7 @@ export default function View(){
 
                         {
                             user && report.user_id === user.uid && (
-                                <button onClick={() => handleDelete(report.id)}>X</button>
+                                <button className="x" onClick={() => handleDelete(report.id)}>✖</button>
                             )
                         }
 
