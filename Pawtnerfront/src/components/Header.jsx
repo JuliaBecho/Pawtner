@@ -22,9 +22,7 @@ export default function Header({ setAnimal }){
          
 
         <div className='header-right'>
-            <button className='settings-button'>
-                <FaCog />
-            </button>
+          
 
 
             {user?(
