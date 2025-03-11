@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import "../styles/view.css"
 import axios from "axios";
 import { userFirebase } from "../context/FirebaseContext";
+import AnimalMap from "./AnimalMap";
 
 export default function View(){
     const[reports, setReports] = useState([]);
@@ -39,7 +40,11 @@ export default function View(){
     }
 
     return(
+
         <div className="view-container">
+           <AnimalMap/>
+           {user && (
+            <>
             <h2 className="view-title">My Reports</h2>
 
             <div className="reports-grid">
@@ -65,8 +70,13 @@ export default function View(){
                         </div>
 
                         </div>
+                        
                 ) )}
             </div>
+            
+            </>
+           )}
+            
         </div>
     );
 }

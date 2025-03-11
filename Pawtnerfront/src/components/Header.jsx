@@ -8,6 +8,11 @@ import { userFirebase } from "../context/FirebaseContext";
 export default function Header({ setAnimal }){
     const {user,logout} = userFirebase();
 
+    function handleLogout(){
+        logout();
+        alert("Logout")
+    }
+
     return  (
     <div className='Header'>
         <div className="header-left">
@@ -21,13 +26,18 @@ export default function Header({ setAnimal }){
                 <FaCog />
             </button>
 
-            <button className="logout-button" onClick={logout}>Logout <FaSignOutAlt/> </button>
 
+            {user?(
+                 <button className="logout-button" onClick={handleLogout}>Logout <FaSignOutAlt/> </button>
 
-            <button className='login-button' onClick={() => setAnimal("login")}>
+            ) : (
+                <button className='login-button' onClick={() => setAnimal("login")}>
                 Login <FaSignInAlt />
                 
             </button>
+            )}
+
+           
         </div>
        
     </div>
