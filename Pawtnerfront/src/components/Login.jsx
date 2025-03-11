@@ -6,14 +6,15 @@ import { useState } from 'react'
 import {userFirebase} from "../context/FirebaseContext";
 
 export default function Login({setAnimal}){
-    const {login} = userFirebase();
+    const {login} = userFirebase(); //Get loging function from Firebase context 
     
-
+    //State to store from input values 
     const [formData,setFormData] = useState({
         email: "",
         password:""
     });
 
+    //Handle input changes and update state 
     const handleChange = (e) => {
         const {name,value}= e.target;
         setFormData({
@@ -22,19 +23,20 @@ export default function Login({setAnimal}){
         });
     };
 
+    //Handle form submission 
     const handleSubmit = async(e) => {
         e.preventDefault();
         try{
-            await login(formData.email, formData.password);
+            await login(formData.email, formData.password); // Authentication user with Firebase 
 
-
+            //Reset form fields after successful login 
             setFormData({
                 email:"",
                 password:"",
                 
             });
 
-            alert("Login successful!");
+            alert("Login successful!"); 
             
         }catch (error){
             alert("Login failed.Please check your credentials");

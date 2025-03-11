@@ -9,15 +9,17 @@ import {
     onAuthStateChanged,
   } from "firebase/auth";
   
-
+//Create a context to share Firebase authentication methods 
 const FirebaseContext = createContext(null);
 
+//FirebaseProvider: Manages Firebase authentication and provides data to children components 
 export const FirebaseProvider = ({children}) => {
-    const[firebaseApp, setFirebaseApp]= useState(null);
-    const[firebaseAuth, setFirebaseAuth]= useState(null);
-    const[user,setUser]= useState(null);
+    const[firebaseApp, setFirebaseApp]= useState(null); //State for Firebase app instance 
+    const[firebaseAuth, setFirebaseAuth]= useState(null);//State for Firebase authentication instance
+    const[user,setUser]= useState(null);//State for the currently logged-in user 
 
     useEffect(() =>{
+        //Firebase configuration settings 
         const firebaseConfig = {
             apiKey: "AIzaSyBK0qgSQjZCe2r7M_sFLtWZsN5Dx2fYndg",
             authDomain: "pawtner-b4740.firebaseapp.com",
@@ -27,19 +29,22 @@ export const FirebaseProvider = ({children}) => {
             appId: "1:588675354074:web:0d3cd1cecbd9e6c9b904e3"
           };
 
+          //Initialize Firebase app and authentication
           const app = initializeApp(firebaseConfig);
           const auth = getAuth(app);
           setFirebaseApp(app);
           setFirebaseAuth(auth);
 
+            //Listen for authentication state changes
           const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
+            setUser(user); //Update user state when authentication changes 
           })
 
-          return ()=> unsubscribe();
+          return ()=> unsubscribe(); //Cleanup function to stop listening on unmount 
 
     },[]);
 
+    //Function to log in an existing user 
     const signup = async(email, password) => {
         try{
             await createUserWithEmailAndPassword(firebaseAuth, email, password);
@@ -48,7 +53,7 @@ export const FirebaseProvider = ({children}) => {
         }
     }
 
-    
+    //Function to log in an existing user 
     const login = async(email, password) => {
         try{
             await signInWithEmailAndPassword(firebaseAuth, email, password);
@@ -61,6 +66,7 @@ export const FirebaseProvider = ({children}) => {
         signOut(firebaseAuth);
     }
 
+    //Function to get the authentication token for the current user 
     const getToken = async() => {
 
         try{
@@ -70,9 +76,10 @@ export const FirebaseProvider = ({children}) => {
         }
     }
 
+    //Prevent rendering until Firebase is initialized 
     if(!firebaseApp) return null;
 
-
+    //Provide authentication data and function to child components 
     return(
         <FirebaseContext.Provider value={{
             app:firebaseApp,
@@ -89,6 +96,7 @@ export const FirebaseProvider = ({children}) => {
     )
 }
 
+//Custom hool to access Firebase authentication data in components 
 export const userFirebase = () => {
     const context =useContext(FirebaseContext);
     if(!context){

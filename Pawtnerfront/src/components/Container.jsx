@@ -6,10 +6,12 @@ import Text from "./Text";
 
 export default function Title(){
 
-const backendURl = import.meta.env.VITE_PAWTNERBACKEND
-console.log(backendURl)
+const backendURl = import.meta.env.VITE_PAWTNERBACKEND //Get backend URL from enviroment variables 
+console.log(backendURl) //Log backend URL for debbugging 
 
-const textSectionRef = useRef(null);
+const textSectionRef = useRef(null); //Create a reference to scroll to a section 
+
+//Function to  smoothly scroll to the text section 
 const scrollToText = () => {
     textSectionRef.current?.scrollIntoView({behavior: "smooth"});
 };

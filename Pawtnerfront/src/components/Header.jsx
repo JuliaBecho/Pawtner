@@ -6,11 +6,12 @@ import { userFirebase } from "../context/FirebaseContext";
 
 
 export default function Header({ setAnimal }){
-    const {user,logout} = userFirebase();
+    const {user,logout} = userFirebase();//Get user state and logout function from firebase context 
 
+    //Handle logout and show alert 
     function handleLogout(){
         logout();
-        alert("Logout")
+        alert("You have been successfully logged out.")
     }
 
     return  (

@@ -6,14 +6,16 @@ import {userFirebase} from "../context/FirebaseContext";
 
 
 export default function Create(){
-    const {signup} = userFirebase();
+    const {signup} = userFirebase(); //Extract singup function from Firebase context 
 
+    //State to store form input values 
    const [formData, setFormData] = useState({
     email:"",
     password:"",
     confirmpassword:""
    });
 
+    //Handle input changes and update state 
    const handleChange = (e) => {
     const {name, value} = e.target;
     setFormData({
@@ -22,19 +24,22 @@ export default function Create(){
     });
    };
 
+    //Handle form submission 
    const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //Check if passwords match before submitting  
     if(formData.password !== formData.confirmpassword){
         alert("passwords do not match!");
         return;
     }
     try{
 
-       await signup(formData.email, formData.password);
+       await signup(formData.email, formData.password); //Call Firebase signup function
 
         alert("Account created successfully!");
 
+        //Reset form fields after successful signup
         setFormData({
             email:"",
             password:"",

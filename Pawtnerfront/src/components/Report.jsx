@@ -82,7 +82,7 @@ const handleSubmit = async (e) => {
             <div className="sidebar">
                 <p>Please select the place you want to report and click on "Report Now!"</p>
                 <button className="report-button">REPORT NOW!</button>
-                <img src= {catphone} alt="" className="location-icon"/>
+                {/* <img src= {catphone} alt="" className="location-icon"/> */}
             </div>
 
 
