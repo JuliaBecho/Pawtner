@@ -1,16 +1,18 @@
 import {db, bucket} from "./firebase.js";
 import express, {json} from "express"
-import cors from "cors";
-import multer from "multer";
-import{v4 as uuidv4}from 'uuid';
+import cors from "cors"; //To allow cross-origin requests 
+import multer from "multer"; // For handling file uploads 
+import{v4 as uuidv4}from 'uuid'; // Import UUID to generate unique file names 
 import { verifyToken } from "./auth-middleware.js";
 
-const app = express();
-app.use(json()); 
-app.use(cors()); 
+const app = express();//Initialize Express app 
+app.use(json()); //Enable JSON parsing in request bodies 
+app.use(cors()); // Enables CORS for cross-origin requests
 
+//Configure Multer to store files in memory before uploading
 const upload = multer({storage: multer.memoryStorage()});
-//Defining a GET endpoint to fetch all animals from the Firebase Firestore database 
+
+//GET endpoint: Fetch all reports from Firestore 
 app.get("/reports", async(req, res)=>{
     try{
         //Fetching all documents from the "reports" collection
@@ -30,52 +32,52 @@ app.get("/reports", async(req, res)=>{
 
 //Defining a POST endpoint to add a new animal to the database 
 app.post("/reports", verifyToken, upload.single("image"), async (req, res) => {
-    console.log(req.body)
+    console.log(req.body) // Log request body for debbuging
 
-    let imageUrl = null; 
-    if(req.file){
-        const fileName = `uploads/${uuidv4()}_${req.file.originalname}`;
-        const file = bucket.file(fileName);
+    let imageUrl = null; // Initialize image URL as null 
+    if(req.file){ //If an image is uploaded 
+        const fileName = `uploads/${uuidv4()}_${req.file.originalname}`;//Generate unique file name 
+        const file = bucket.file(fileName); //Create reference to storage 
 
-        await file.save(req.file.buffer,{
+        await file.save(req.file.buffer,{ //Save file to Firebase Storage 
             metadata: {contentType:req.file.mimetype},
         });
 
-        await file.makePublic();
-        imageUrl = `https://storage.googleapis.com/${bucket.name}/${fileName}`
+        await file.makePublic();//Make file publicly accessible 
+        imageUrl = `https://storage.googleapis.com/${bucket.name}/${fileName}`//Generate public URL
     }
 
-    const {user_id} = req.user;
-    db.collection('reports').add({...req.body, imageUrl, user_id})
+    const {user_id} = req.user; //Extract user ID from authentication 
+    db.collection('reports').add({...req.body, imageUrl, user_id})//Add report to Firestore 
         .then((docRef) => {
-            console.log('Documento adicionado com ID:', docRef.id);
-            res.send({ id: docRef.id });
+            console.log('Documento adicionado com ID:', docRef.id);//Log document ID
+            res.send({ id: docRef.id });//Respond with document ID 
         })
         .catch((error) => {
-            console.error('Erro ao adicionar documento:', error);
-            res.sendStatus(500);
+            console.error('Erro ao adicionar documento:', error);//Log error
+            res.sendStatus(500);//return internal server error
         });
 });
 
 
-
+//DELETE endpoint: Remove a report by ID
 app.delete("/reports/:id", async (req, res)=>{
     try {
-        const {id} = req.params;
+        const {id} = req.params; //Get report ID request parameters 
 
-        const docRef = db.collection("reports").doc(id);
-        const doc = await docRef.get();
+        const docRef = db.collection("reports").doc(id);//Reference the document 
+        const doc = await docRef.get();//Fetch document data
 
-        if (!doc.exists) {
+        if (!doc.exists) { //Check if the document exists
             return res.status(404).json({error: "Document not found"});
         }
 
-        await docRef.delete();
+        await docRef.delete();//Delete the document 
 
-        res.json({message: "Animal deleted successfully", id});
+        res.json({message: "Animal deleted successfully", id});//Confirm deletion 
     }catch (error) {
-        console.error("Error deleting animal:", error);
-        res.status(500).json({error: "Internal Server Error"});
+        console.error("Error deleting animal:", error);//Log error
+        res.status(500).json({error: "Internal Server Error"});//Return error response 
     }
 });
 
