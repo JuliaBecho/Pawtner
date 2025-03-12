@@ -28,6 +28,12 @@ export default function MarkerMap(props){
             >
 
             <img src={report.imageUrl} alt="Animal" width={150} />
+
+            {report.type}
+            {report.animal}
+            {report.breed}
+            {report.date}
+            {report.email}
             {report.description}
 
             </InfoWindow>

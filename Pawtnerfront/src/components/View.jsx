@@ -7,6 +7,7 @@ import AnimalMap from "./AnimalMap";
 export default function View(){
     const[reports, setReports] = useState([]); //State to store reports 
     const {user} = userFirebase();//Get the current authenticated user
+    
 
     //Fetch reports from the backend when the component mounts 
     useEffect(() => {
@@ -31,7 +32,7 @@ export default function View(){
             await axios.delete("http://localhost:3000/reports/"+ reportId);//Delete report from API
             setReports(
                 reports.filter((report) => {
-                    return report.id !== reportId; //Rem,ove deleted report from state 
+                    return report.id !== reportId; //Remove deleted report from state 
                 })
             );
         }catch (error) {

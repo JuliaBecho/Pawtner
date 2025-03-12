@@ -86,11 +86,15 @@ function handleShowMapOrForm(){
     if (!user) return  <p>Please log in to submit a report</p>;
     if (showMap) {
         return (
-        <ReportMap
+           <div className='map-container'> 
+             <ReportMap
         updateLocationOnForm={(lat,lng) => {
             setFormData({...formData, latitude:lat, longitude:lng});
         }}
-        />) 
+        />
+           </div> 
+       
+    ); 
     
     }else {
 

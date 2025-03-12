@@ -26,10 +26,10 @@ export default function ReportMap(props){
     
                     <Map
                     mapId={'bfnlivhjj4vg85'} //Unique Google Maps ID for styling 
-                    style={{width:"100%", height:"100%"}}//Full width and height inside container 
+                    style={{width:"100%", height:"100%", borderRadius:"10px"}}//Full width and height inside container 
                     defaultZoom={12} //Initial zoom level 
                     onClick={handleMapClick}
-                    defaultCenter={{lat: 53.55909057947169, lng: 10.005767668054645}}//Default map center
+                    defaultCenter={{lat: 49.282729, lng: -123.120738}}//Default map center
                     gestureHandling={'greedy'}//Enables smooth interaction on touch devices 
                     disableDefaultUI ={true}//Hides default Google Maps UI elements 
                     >
