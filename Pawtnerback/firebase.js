@@ -19,5 +19,3 @@ const auth = admin.auth();// Access Firebase Authentication
 
 //Export services to be used in other parts of the project 
 export {db, bucket, auth};
-
-

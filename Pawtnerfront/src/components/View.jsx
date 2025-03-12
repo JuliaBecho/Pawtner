@@ -41,25 +41,21 @@ export default function View(){
        
     }
 
-    return(
+    function showUserReports(report){
+        const reportsFromUser = reports.filter((report) => {
+            return report.user_id === user.uid;
+        });
+        
+        if(reportsFromUser.length>0){
+            return reportsFromUser.map((report)=> (
+                <div key={report.id} className="report-card">
 
-        <div className="view-container">
-           <AnimalMap/> {/*Display map with reported locations */}
 
-           {/*Display reports only if user is logged in */}
-           {user && (
-            <>
-            <h2 className="view-title">My Reports</h2>
-
-            <div className="reports-grid">
-                {reports.map((report) => (
-                    <div key={report.id} className="report-card">
-
-                       {/*Show delete button only for reports created by the logged-in user */}
-                        { user && report.user_id === user.uid && (
-                                <button className="x" onClick={() => handleDelete(report.id)}>✖</button>
-                            )
-                        }
+              
+                       
+                         <button className="x" onClick={() => handleDelete(report.id)}>✖</button>
+                            
+                        
 
                         <div className="image-placeholder">
                             <img src={report.imageUrl} />
@@ -74,8 +70,27 @@ export default function View(){
                         </div>
 
                         </div>
-                        
-                ) )}
+            ));
+        }
+
+        return <p>There is nothing to show</p>
+        
+    }
+
+
+    return(
+
+        <div className="view-container">
+           <AnimalMap reports={reports}/> {/*Display map with reported locations */}
+
+           {/*Display reports only if user is logged in */}
+           {user && (
+            <>
+            <h2 className="view-title">My Reports</h2>
+
+            <div className="reports-grid">
+
+                {showUserReports(reports)}
             </div>
             
             </>

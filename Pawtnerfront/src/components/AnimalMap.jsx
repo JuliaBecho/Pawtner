@@ -1,7 +1,9 @@
 import{APIProvider,Map} from "@vis.gl/react-google-maps"; //import Google maps Api components 
 import MarkerMap from "./MarkerMap";//Import custom makes component
 
-export default function AnimalMap() {
+export default function AnimalMap(props) {
+    const {reports} = props;
+    console.log(reports);
     return(
 
        
@@ -21,7 +23,11 @@ export default function AnimalMap() {
                 gestureHandling={'greedy'}//Enables smooth interaction on touch devices 
                 disableDefaultUI ={true}//Hides default Google Maps UI elements 
                 >
-                    <MarkerMap/>
+
+                    {reports.map((report) => {
+                    return(<MarkerMap key={report.id} report={report}/>)
+                    })}
+                    
                 </Map>
             </APIProvider>
 

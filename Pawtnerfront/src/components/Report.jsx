@@ -5,6 +5,7 @@ import InputMask from "react-input-mask"
 import axios from "axios"
 import "../styles/report.css";
 import { userFirebase } from '../context/FirebaseContext';
+import ReportMap from './ReportMap';
 
 
 
@@ -18,9 +19,13 @@ const[formData, setFormData] = useState({
     date:"",
     email:"",
     description:"",
+    latitude:"",
+    longitude:'',
     terms:false,
-    terms2:false,
+
 });
+
+const[showMap, setShowMap] = useState(true);
 
     const handleChange = (e) => {
         const{name, value, type, checked}= e.target;
@@ -61,9 +66,11 @@ const handleSubmit = async (e) => {
             date:"",
             email:"",
             description:"",
+            latitude:"",
+            longitude:'',
             image:null,
             terms:false,
-            terms2:false,
+           
         });
         console.log(response.data);
     })
@@ -75,27 +82,24 @@ const handleSubmit = async (e) => {
 
 };
 
-    return(
-        <div className="page-container"> {/*Main container wrapping the entire page*/}
+function handleShowMapOrForm(){
+    if (!user) return  <p>Please log in to submit a report</p>;
+    if (showMap) {
+        return (
+        <ReportMap
+        updateLocationOnForm={(lat,lng) => {
+            setFormData({...formData, latitude:lat, longitude:lng});
+        }}
+        />) 
+    
+    }else {
 
-            {/*Sidebar section with instructions and a report button */}
-            <div className="sidebar">
-                <p>Please select the place you want to report and click on "Report Now!"</p>
-                <button className="report-button">REPORT NOW!</button>
-                {/* <img src= {catphone} alt="" className="location-icon"/> */}
-            </div>
-
-
-            {/*Report submission form container*/}
-            <div className='report-container'>
-                <h2 className='titles'>Submit a report</h2>
-
-                {/*Form for submitting a report*/}
-                <form onSubmit={handleSubmit} className='report-form'>
+        return(
+            <form onSubmit={handleSubmit} className='report-form'>
 
                 <div className='form-colums'>
 
-<div className='form-left'>
+                <div className='form-left'>
 
                     <label htmlFor="type">Type of report:</label>
                  <select value={formData.type} name="type" id="type" onChange={handleChange}  required>
@@ -123,8 +127,13 @@ const handleSubmit = async (e) => {
                 {/*Phone number input field for user contact*/}
                 <label htmlFor="email">Email:</label>
                 <input value={formData.email} type="email" id='email' name='email' onChange={handleChange}  required />
-                
-
+                <br /><br />
+                <label htmlFor="latitude">Latitude:</label>
+                <input value={formData.latitude} type="text" id='latitude' name='latitude' onChange={handleChange}  required />
+                <br /><br />
+                <label htmlFor="longitude">Longitude:</label>
+                <input value={formData.longitude} type="text" id='longitude' name='longitude' onChange={handleChange}  required />
+                <br /><br />
                 </div>
                     
                 <br /><br />
@@ -147,22 +156,49 @@ const handleSubmit = async (e) => {
                 <br /><br />
                 </div>
                 
-                {/*Checkbox for agreeing to be contacted*/}
+              
                
                 </div>
 
-                
-
             </div>
-               
-               
 
+                <button className='submitbutton' type='button' onClick={()=> setShowMap(true)}>Return to map</button>
                 <button className='submitbutton' type='submit'>Report</button>
+                
 
                 </form>
-                
+        );
+    }
+}
+
+    function handleReportClick(){
+        if(formData.latitude === "" || formData.longitude === ""){
+            alert("Please select a location on the map");
+        }else {
+            setShowMap(false);
+        }
+    }
+
+    return(
+        <div className="page-container"> {/*Main container wrapping the entire page*/}
+
+            {/*Sidebar section with instructions and a report button */}
+            <div className="sidebar">
+                <p>Please select the place you want to report and click on "Report Now!"</p>
+                <button className="report-button" onClick={handleReportClick}>REPORT NOW!</button>
+                {/* <img src= {catphone} alt="" className="location-icon"/> */}
+            </div>
+
+
+            {/*Report submission form container*/}
+            <div className='report-container'>
+                <h2 className='titles'>Submit a report</h2>
+
+            {handleShowMapOrForm()}
+
+              
             </div>
         </div>
         
-    )
+    );
 }
