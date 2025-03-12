@@ -220,46 +220,73 @@ o	Display markers on the map for registered reports.
 
 ## Data Flow
 1.	The user selects a location on the map.
-2.	The frontend uses the Google Maps API to convert the address into coordinates (if necessary) and displays the location on the map.
-3.	When the user submits a report, the coordinates are sent to the backend as part of the request body.
-4.	The backend stores the coordinates in the database and associates them with the report.
-5.	The frontend retrieves the coordinates from the backend and displays them on the map as markers.
+2.	The frontend captures the latitude and longitude from the map click event and updates the form fields.
+3.	When the user submits a report, the form data (including coordinates and image) is sent to the backend.
+4.	When an image is uploaded, the backend stores it in Firebase Storage and generates a public image URL.
+5.	The backend stores the report in Firestore, linking it with the image URL and the user ID (if authenticated).
+6.	The frontend retrieves all reports from the backend, including their coordinates and images.
+7.	The reports are displayed as markers on the Google Map, allowing users to click and view details inside an expandable InfoWindow.
 
-## Limitations and Requirements
-•	Usage Quota: The Google Maps API has daily request limits. Ensure that usage is monitored to avoid exceeding the quota and incurring additional costs.
-
-•	API Key Security: The Google Maps API key must be kept secure and should not be exposed in public repositories or client-side code.
-
-•	Error Handling: The frontend should handle errors related to the Google Maps API, such as failed geolocation requests or invalid API keys.
 
 
 ## Home page
-On this page, there is a summary and photos of the Pawtner project and its purpose
+This page contains a catchy phrase and below it a summary of the project's purpose.
 
-![image](https://github.com/user-attachments/assets/06416222-3919-4357-8c93-0c3ad06d1b9b)
+![image](https://github.com/user-attachments/assets/9c0311d2-64f5-4e8b-91ca-4db86d387fff)
+
+![image](https://github.com/user-attachments/assets/0324e628-ebd7-463b-b536-7a69677f9d82)
+
+
 
 
 
 ## Report page
-On this page, users can report cases of animal abuse or lost pets 
+On this page, if the user is authenticated, a map will be shown where the user will select a place and then fill in the report information.
 
-![image](https://github.com/user-attachments/assets/fba8258c-367e-4bec-95d6-bdf211d8dd08)
+![image](https://github.com/user-attachments/assets/a29682ae-b5d1-41a0-9052-fa4b0e426b1f)
+
+![image](https://github.com/user-attachments/assets/314e6a6b-e582-49cd-9c90-35d08142e926)
+
+Below the form to submit a report there will also be a button to return to the map in case the user selected the wrong place.
+
+![image](https://github.com/user-attachments/assets/5bad4f09-8907-4651-b358-4a204aabb2e3)
+
+If the user is not authenticated, the reports page will appear like this:
+
+![image](https://github.com/user-attachments/assets/09d38281-2ba0-48dd-85a5-2155e1e7c22b)
+
+
+
 
 ## View reports
-On this page, users can view reports
+The view page can be accessed even by unauthenticated users, it will contain the map with the corresponding pins on it and when clicked it will show the reports made in that place.
 
+![image](https://github.com/user-attachments/assets/6f249c17-baa0-4478-9f8f-8ce1e79c97cd)
 
-![image](https://github.com/user-attachments/assets/3b5753ce-7ec9-4e20-9ce8-fe09d286eaeb)
+![image](https://github.com/user-attachments/assets/f98f850c-00c9-4f3e-83f0-65c6d9bb9c4b)
+
+If the user is authenticated, he will be able to see his reports already made below and can delete them if he wants.
+
+![image](https://github.com/user-attachments/assets/179835e5-a4cb-4da1-8543-f8c91de20cd1)
+
+If the authenticated user has not yet made any reports, the page display will be like this
+
+![image](https://github.com/user-attachments/assets/ec66a507-3242-412c-87d6-fc4d00b4b3f6)
 
 
 
 ## Login page
-Users can log into their account or create one. However, logging in is not required to submit reports, and they can choose to
-remain anonymous. 
+
+On this page the user can log in if they already have an account.
+
+![image](https://github.com/user-attachments/assets/b7439643-ad1c-4a68-bab2-d93f2245b3ba)
 
 
-![image](https://github.com/user-attachments/assets/7db88765-cb7e-4b23-8cda-0cccee1e7bc9)
+## Create an account
 
+On this page the user will create their account
+
+![image](https://github.com/user-attachments/assets/8ffb6506-75f7-4f47-8322-3848e46002aa)
 
 
 
