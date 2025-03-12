@@ -1,47 +1,110 @@
-# Pawtner: Pet Support plataform
+# Pawtner: Pet Support Platform
 
-In many countries, stray animals and cases of animal abuse are common and often go unaddressed. Stray animals lack shelter, food, and care, while abuse cases remain unreported due to the absence of accessible tools.
+In many countries, stray animals and cases of animal abuse are common and often go unaddressed. Pawtner is a web-based platform designed to allow users to report **animal abuse** and **lost/found pets** efficiently. The platform integrates **Google Maps API** to enable precise location reporting and **Firebase** for authentication and data management.
 
-* Pawtner aims to solve this by:
-1.	Reporting Animal Abuse: Allowing users to report abuse with details like location, description, and images, helping authorities or organizations to act.
-2.	Lost and Found Animals: report lost or found animals by sharing descriptions and photos. This connects stray animals with their owners or rescue organizations for care and support.
+## **Core Features**
+1. **Report Animal Abuse**  
+   - Users can report cases of animal abuse with details like location, description, and images.
+   - The reports appear on an **interactive map** for community awareness.
 
-Pawtner seeks to empower communities to act, ensuring a better response to animal welfare challenges and fostering a safer environment for animals in need.
+2. **Report Lost and Found Animals**  
+   - Users can report lost or found animals, helping to reunite pets with their owners.
+   - Reports include images, breed, and last known location.
 
-## Overview of the Application’s Functionality:
+3. **View Reports on an Interactive Map**  
+   - Users can see all reports plotted on **Google Maps**.
+   - Clicking on a marker opens a **detailed view** with an expandable info window.
 
-Pawtner is a platform designed to support and protect stray and abused animals. Users will be able to:
+4. **Anonymous or Authenticated Reporting**  
+   - Users **can submit reports anonymously**.
+   - Logged-in users (via **Firebase Authentication**) can manage and delete their own reports.
 
- •	Report cases of animal abuse by providing detailed descriptions, attaching images/videos, and specifying the location using an interactive map.
+5. **Modern UI with React**  
+   - Fully responsive and optimized for a seamless user experience.
+   - **Dark mode support**.
 
- •	Report lost or found animals with features to describe the animal (e.g., species, breed, color) and upload photos for better identification.
+## **Technologies Used**
+- **Frontend:** React, Vite, Tailwind CSS
+- **Backend:** Node.js, Express.js, Firebase Firestore
+- **Authentication:** Firebase Authentication
+- **Database:** Firebase Firestore
+- **Maps API:** Google Maps JavaScript API (@vis.gl/react-google-maps)
+- **State Management:** React Hooks (`useState`, `useEffect`)
+- **Deployment:** Firebase Hosting (optional)
+- **Development Tools:** Postman, VS Code, Git/GitHub
 
- •	Access an interactive map where reports of lost, found, and abuse cases are displayed for better community response.
+---
 
- •	Utilize a responsive and intuitive interface that includes features like dark mode and geolocation-based reporting.
+## **Frontend Implementation**
+The frontend is built with React and uses @vis.gl/react-google-maps for map integration.
 
-## User stories:
+**Google Maps Integration**
+```javascript
+import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 
-1.	As a concerned citizen, I want to report cases of animal abuse so that authorities or organizations can intervene and take action.
-2.	As a pet owner, I want to report my lost pet with detailed descriptions and photos so that the community can help me find it.
-3.	As a rescuer, I want to report a stray animal I found and provide its location, description, and photos so that rescue organizations can assist.
-4.	As a community member, I want to view reports of lost or abused animals on a map so that I can help or take necessary action.
-5.	As a user, I want the app to have a responsive design and dark mode so that it is easy to use in all environments.\
+export default function ReportMap({ updateLocationOnForm }) {
+    const handleMapClick = (event) => {
+        if (event.detail) {
+            const { lat, lng } = event.detail.latLng;
+            updateLocationOnForm(lat, lng);
+        }
+    };
 
-## Database Schema desing:
+    return (
+        <div className="map-container">
+            <APIProvider apiKey={import.meta.env.VITE_ANIMALMAP}>
+                <Map
+                    defaultCenter={{ lat: 49.282729, lng: -123.120738 }}
+                    defaultZoom={12}
+                    onClick={handleMapClick}
+                    disableDefaultUI={true}
+                />
+            </APIProvider>
+        </div>
+    );
+}
+```
+**Interactive Report Cards with Expandable Info**
 
-![image](https://github.com/user-attachments/assets/e5936586-21d6-4bef-9343-bf3d522390b0)
+```javascript
+import { useState } from "react";
 
-## API endpoints:
+export default function ReportCard({ report }) {
+    const [expanded, setExpanded] = useState(false);
 
-| Method | Endpoint               | Description                                              |
-|--------|-------------------------|----------------------------------------------------------|
-| POST   | /api/reports            | Allows users to submit a report of animal abuse.         |
-| GET    | /api/reports            | Retrieves a list of all abuse or lost/found animal reports. |
-| GET    | /api/reports/{id}       | Retrieves details of a specific report by its ID.        |
-| PUT    | /api/reports/{id}       | Updates an existing report.                              |
-| DELETE | /api/reports/{id}       | Deletes a specific report.                               |
-| POST   | /api/animals            | Allows users to report a lost or found animal.           |
+    return (
+        <div className={`report-card ${expanded ? "expanded" : ""}`}>
+            <img src={report.imageUrl} alt="Animal" />
+            <p><strong>Type:</strong> {report.type}</p>
+            <p><strong>Date:</strong> {report.date}</p>
+            
+            {expanded && (
+                <>
+                    <p><strong>Animal:</strong> {report.animal}</p>
+                    <p><strong>Description:</strong> {report.description}</p>
+                </>
+            )}
+
+            <button onClick={() => setExpanded(!expanded)}>
+                {expanded ? "Show Less" : "More Info"}
+            </button>
+        </div>
+    );
+}
+
+```
+
+
+## **Backend Implementation**
+
+The backend is built with Node.js + Express.js and connects to Firebase Firestore for data storage.
+
+**API Endpoints**
+| Method | Endpoint                | Description                                                                    |
+|--------|-------------------------|--------------------------------------------------------------------------------|
+| POST   | /reports                | 	Creates a new report, allowing image uploads. Requires authentication (token) |
+| GET    | /reports                | 	Retrieves all reports stored in Firebase Firestore                            |
+| DELETE | /reports/:id            |  Deletes a specific report by ID.                                              |
 
 
 ## CRUD operations:
@@ -50,26 +113,96 @@ Pawtner is a platform designed to support and protect stray and abused animals. 
 | Action  | Description                                                   |
 |---------|---------------------------------------------------------------|
 | Create  | Add a new user when they sign up                              |
-| Read    | Retrieve user details for login or profile viewing            |
-| Update  | Update user information                                       |
-| Delete  | Remove a user account                                         |
+| Read    |	Retrieve user details using Firebase Authentication           |
+
+
 
 ## Reports Table
-| Action  | Description                                                   |
-|---------|---------------------------------------------------------------|
-| Create  | Add a new report when a user submits one                      |
-| Read    | Retrieve report for display on the map or in a list           |
-| Update  | Edit report details                                           |
-| Delete  | Remove a report                                               |
+| Action  | Description                                                    |
+|---------|----------------------------------------------------------------|
+| Create  |Add a new report when a user submits one, allowing image uploads|
+| Read    | Retrieve all reports to display on the map or in a list        |
+| Delete  | Remove a report by ID (only for authenticated users)           |
+
 
 ## Animals Table
 | Action  | Description                                                   |
 |---------|---------------------------------------------------------------|
-| Create  | Add a new animal when a report is created                     |
-| Read    | Retrieve animal details for display                           |
-| Update  | Update animal status (from lost to found)                     |
+| Create  | Add a new animal when a report is submited                    |
+| Read    | Retrieve animal details (included in reports)                 |
 | Delete  | Remove an animal record                                       |
 
+
+
+## **Development Instructions**
+To run the Pawtner: Pet Support Platform, follow these setup steps:
+
+1. **Prerequisites**
+   - You must have a Firebase project configured with the following services enabled:
+   -  Storage (for image uploads)
+   -  Authentication (for user login and report ownership tracking)
+   -  Firestore Database (to store reports)
+     
+✅ Google Maps API must be enabled in your Google Cloud Console to use location services.
+
+✅ Install Node.js and npm before proceeding.
+
+
+2. **Project Setup**
+   
+For both the frontend and backend, install dependencies by running:
+
+```bash
+npm install
+
+```
+
+6. **Database Configuration**
+   
+Pawtner stores reports in Firebase Firestore. The database should be structured as follows:
+
+```bash
+/reports
+    ├── {reportId}
+    │   ├── type: "lost" | "found" | "abuse"
+    │   ├── animal: "Dog"
+    │   ├── breed: "Beagle"
+    │   ├── date: "YYYY-MM-DD"
+    │   ├── email: "user@example.com"
+    │   ├── location: { lat: 49.2827, lng: -123.1207 }
+    │   ├── imageUrl: "https://storage.googleapis.com/bucket-name/uploads/animal.jpg"
+    │   ├── user_id: "firebase_user_id"
+
+```
+
+4. **Frontend Setup**
+   
+✅ Steps to Start the Frontend:
+
+ - Ensure that Google Maps API is enabled in Google Cloud Console.
+ - Run the following command to start the development server:
+```bash
+npm run dev
+```
+
+5. **Backend Setup**
+
+✅ Steps to Start the Backend:
+
+ - Generate a Firebase Service Account JSON file, download it, and place it in the project root directory.
+ - Run the following command to initialize the backend server:
+```bash
+npm run init
+```
+
+
+
+
+
+
+## Database Schema desing:
+
+![image](https://github.com/user-attachments/assets/e5936586-21d6-4bef-9343-bf3d522390b0)
 
 
 ## Achiteture diagram:
@@ -79,53 +212,14 @@ Pawtner is a platform designed to support and protect stray and abused animals. 
 ## The Google Maps API will be used for:
 
 1.	Geolocation:
+   
 o	Allow users to select or view the location of a report (abuse, lost/found animal) on the map.
 o	Display markers on the map for registered reports.
-2.	Addresses and Coordinates:
-o	Convert addresses into coordinates (latitude and longitude) and vice versa.
-o	Display the exact location on the map.
 
-## Implementation
 
-Frontend (React)
 
-•	The Google Maps API is integrated into the frontend using the @react-google-maps/api library.
-•	A Google Maps API key is required to load the map and enable its features. This key is securely stored in the frontend configuration file.
-
-```javascript
-import { GoogleMap, Marker } from '@react-google-maps/api';
-
-const MapComponent = ({ location }) => {
-  return (
-    <GoogleMap
-      zoom={15}
-      center={location}
-      mapContainerStyle={{ width: '100%', height: '400px' }}
-    >
-      <Marker position={location} />
-    </GoogleMap>
-  );
-};
-
-```
-
-Backend
-
-•	The backend does not directly interact with the Google Maps API. Instead, it receives the coordinates (latitude and longitude) from the frontend and stores them in the database.
-
-```json
-{
-  "type": "abuse",
-  "description": "Animal mistreated on X Street",
-  "location": {
-    "lat": -23.5505,
-    "lng": -46.6333
-  },
-  "photos": ["url1", "url2"]
-}
-```
 ## Data Flow
-1.	The user selects a location on the map or enters an address in the frontend.
+1.	The user selects a location on the map.
 2.	The frontend uses the Google Maps API to convert the address into coordinates (if necessary) and displays the location on the map.
 3.	When the user submits a report, the coordinates are sent to the backend as part of the request body.
 4.	The backend stores the coordinates in the database and associates them with the report.
