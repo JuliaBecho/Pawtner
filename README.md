@@ -195,20 +195,6 @@ npm run dev
 npm run init
 ```
 
-
-
-
-
-
-## Database Schema desing:
-
-![image](https://github.com/user-attachments/assets/e5936586-21d6-4bef-9343-bf3d522390b0)
-
-
-## Achiteture diagram:
-
-![image](https://github.com/user-attachments/assets/44213c96-ef72-4131-9567-6a1594afc31c)
-
 ## The Google Maps API will be used for:
 
 1.	Geolocation:
@@ -227,6 +213,52 @@ o	Display markers on the map for registered reports.
 6.	The frontend retrieves all reports from the backend, including their coordinates and images.
 7.	The reports are displayed as markers on the Google Map, allowing users to click and view details inside an expandable InfoWindow.
 
+
+## **System Architecture**
+
+The **Pawtner** platform follows a **three-tier architecture**:
+- The **Frontend** (React) handles user interactions.
+- The **Backend** (Node.js + Express) manages API requests and connects to the database.
+- The **Database** (Firebase Firestore) stores reports, user data, and image URLs.
+
+Below is an interactive diagram representing the data flow:
+
+```mermaid
+graph TD;
+    User -->|Interacts with| Frontend(React);
+    Frontend -->|API Requests| Backend(Node.js);
+    Backend -->|Stores & Retrieves Data| Database(Firebase);
+    Backend -->|Google Maps Integration| GoogleMaps;
+```
+## **Database Schema Design**
+
+Pawtner stores **user reports** in Firebase Firestore. Reports can include **images**, **animal details**, and **location coordinates**.
+
+Below is the updated database schema:
+
+```mermaid
+erDiagram
+    REPORTS {
+        string ReportID PK
+        string UserID FK "Authenticated user ID (if available)"
+        string Type "abuse, lost, found"
+        string Description
+        string ImageURL "Uploaded image link"
+        number Latitude
+        number Longitude
+        string Date
+    }
+    
+    ANIMALS {
+        string AnimalID PK
+        string ReportID FK
+        string Species
+        string Breed
+        string Color
+    }
+    
+    REPORTS ||--o{ ANIMALS : "Includes"
+```
 
 
 ## Home page
@@ -287,6 +319,12 @@ On this page the user can log in if they already have an account.
 On this page the user will create their account
 
 ![image](https://github.com/user-attachments/assets/8ffb6506-75f7-4f47-8322-3848e46002aa)
+
+
+
+
+
+
 
 
 
