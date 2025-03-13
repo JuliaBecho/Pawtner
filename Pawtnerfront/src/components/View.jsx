@@ -14,7 +14,8 @@ export default function View() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await axios.get("http://localhost:3000/reports"); // Fetch reports API
+        const url = import.meta.env.VITE_PAWTNERBACKEND;
+        const { data } = await axios.get(`${url}/reports`); // Fetch reports API
         setReports(data); //Update state with fetched data
       } catch (error) {
         alert("Something ent wrong");
@@ -36,7 +37,8 @@ export default function View() {
   async function handleDelete(reportId) {
     if (confirm("Are you sure you want to delete this report?")) {
       try {
-        await axios.delete("http://localhost:3000/reports/" + reportId); //Delete report from API
+        const url = import.meta.env.VITE_PAWTNERBACKEND;
+        await axios.delete(`${url}/reports/` + reportId); //Delete report from API
 
         setReports(
           reports.filter((report) => {

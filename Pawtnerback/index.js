@@ -4,6 +4,8 @@ import cors from "cors"; //To allow cross-origin requests
 import multer from "multer"; // For handling file uploads 
 import{v4 as uuidv4}from 'uuid'; // Import UUID to generate unique file names 
 import { verifyToken } from "./auth-middleware.js";
+import dotenv from "dotenv";
+dotenv.config()
 
 const app = express();//Initialize Express app 
 app.use(json()); //Enable JSON parsing in request bodies 
@@ -92,7 +94,7 @@ app.put("/reports/:id", async (req, res)=>{
             return res.status(400).json({error: "No data provided for update"});
         }
 
-        const docRef = db.collection("animals").doc(id);
+        const docRef = db.collection("reports").doc(id);
         const doc = await docRef.get();
 
         if(!doc.exists){
@@ -110,7 +112,8 @@ app.put("/reports/:id", async (req, res)=>{
 
 
 
-app.listen(3000, () =>{
-    console.log("Server is running on port 3000");
+const port = process.env.PORT || 3000;
+app.listen(port,()=> {
+    console.log("Server is running on port" + port);
 });
 

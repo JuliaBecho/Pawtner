@@ -39,18 +39,29 @@
 }
 
 .report-card .x {
-    /* position: absolute; */
+    /* position: absolute;
     top: 5px;
-    right: 5px;
+    right: 25px; */
     font-size: 1.5rem;
     cursor: pointer;
 }
 
+.report-options{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+
 .report-card .edit-icon{
+    /* position: absolute;
     top: 5px;
-    right: 35px;
+    right: 10px; */
     font-size: 1.3rem;
     cursor: pointer;
+    border: none;
+    
 }
 
 .report-card.edit-mode .toggle-info2{
@@ -131,6 +142,7 @@
     display: flex;
     justify-content: center;
     gap: 20px;
+    align-items: start;
 }
 
 .report-info p {

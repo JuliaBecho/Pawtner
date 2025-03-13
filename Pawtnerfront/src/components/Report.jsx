@@ -43,8 +43,11 @@ export default function Report() {
     const token = await getToken();
     console.log("Token", token);
 
+
+    const url = import.meta.env.VITE_PAWTNERBACKEND;
+
     axios
-      .post("http://localhost:3000/reports", formData, {
+      .post(`${url}/reports`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,

@@ -1,59 +1,70 @@
 import { useState } from "react";
 import axios from "axios";
 
-export function ReportItem({report, onUptade, onDelete}) {
-    const [expandedReport, setExpandedReport] = useState(null);
-    const [editMode, setEditMode] = useState(false);
-    const [editReport, setEditReport] = useState({...report});
+export function ReportItem({ report, onUpdate, onDelete }) {
+  const [expandedReport, setExpandedReport] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [editReport, setEditReport] = useState({ ...report });
 
-    function toggleReportDetails(reportId){
-        setExpandedReport(expandedReport === reportId ? null : reportId);
-    }
+  function toggleReportDetails(reportId) {
+    setExpandedReport(expandedReport === reportId ? null : reportId);
+  }
 
-    function handleEdit(){
-        setEditMode(true);
-    }
+  function handleEdit() {
+    setEditMode(true);
+  }
 
-    function handleCancel(){
+  function handleCancel() {
+    setEditMode(false);
+    setEditReport({ ...report });
+  }
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setEditReport((prev) => ({ ...prev, [name]: value }));
+  }
+
+  async function handleSave() {
+    try {
+
+      const url = import.meta.env.VITE_PAWTNERBACKEND;
+      const response = await axios.put(
+        `${url}/reports/${report.id}`,
+        editReport
+      );
+
+      if (response.status === 200) {
         setEditMode(false);
-        setEditReport({ ...report});
-    }
-
-    function handleChange(e){
-        const {name, value} = e.target;
-        setEditReport((prev)=>({...prev,[name]: value}));
-    }
-
-    async function handleSave() {
-        try {
-          const response = await axios.put(
-            `http://localhost:3000/reports/${report.id}`,
-            editReport
-          );
-    
-          if (response.status === 200) {
-            setEditMode(false);
-            onUpdate(editReport); // Atualiza a lista de reports no componente pai
-          }
-    
-          alert("Update successful!");
-        } catch (error) {
-          console.error("Erro on saving:", error);
-          alert("Erro on saving alterations");
-        }
+        editReport; // Atualiza a lista de reports no componente pai
       }
 
-        return(
-            <div 
-            className={`report-card ${expandedReport === report.id ? "expanded" : ""}`}>
-            <button className="x" onClick={() => onDelete(report.id)}>✖</button>
-            <button className="edit-icon" onClick={handleEdit}>✒️</button>
+      alert("Update successful!");
+    } catch (error) {
+      console.error("Erro on saving:", error);
+      alert("Erro on saving alterations");
+    }
+  }
 
-            <div className="image-placeholder">
-                <img src={report.imageUrl} alt="Animal Report" />
-            </div>
+  return (
+    <div
+      className={`report-card ${
+        expandedReport === report.id ? "expanded" : ""
+      }`}
+    >
+      <div className="report-options">
+        <button className="x" onClick={() => onDelete(report.id)}>
+          ✖
+        </button>
+        <button className="edit-icon" onClick={handleEdit}>
+          ✒️
+        </button>
+      </div>
 
-            <div className="report-info">
+      <div className="image-placeholder">
+        <img src={report.imageUrl} alt="Animal Report" />
+      </div>
+
+      <div className="report-info">
         {editMode ? (
           <>
             <label>
@@ -127,16 +138,16 @@ export function ReportItem({report, onUptade, onDelete}) {
                 </p>
               </>
             )}
+
+            <button
+              className="toggle-info2"
+              onClick={() => toggleReportDetails(report.id)}
+            >
+              {expandedReport === report.id ? "Show Less" : "More Info"}
+            </button>
           </>
         )}
       </div>
-
-      <button
-        className="toggle-info2"
-        onClick={() => toggleReportDetails(report.id)}
-      >
-        {expandedReport === report.id ? "Show Less" : "More Info"}
-      </button>
     </div>
   );
 }

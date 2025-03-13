@@ -18,17 +18,20 @@ export const FirebaseProvider = ({ children }) => {
   const [firebaseAuth, setFirebaseAuth] = useState(null); //State for Firebase authentication instance
   const [user, setUser] = useState(null); //State for the currently logged-in user
 
+
+  console.log(import.meta.env.VITE_FIREBASE_API_KEY)
   useEffect(() => {
     //Firebase configuration settings
     const firebaseConfig = {
-      apiKey: "AIzaSyBK0qgSQjZCe2r7M_sFLtWZsN5Dx2fYndg",
-      authDomain: "pawtner-b4740.firebaseapp.com",
-      projectId: "pawtner-b4740",
-      storageBucket: "pawtner-b4740.firebasestorage.app",
-      messagingSenderId: "588675354074",
-      appId: "1:588675354074:web:0d3cd1cecbd9e6c9b904e3",
+      apiKey: import.meta.env.VITE_FIREBASE_API_KEY ,
+      authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+      projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+      storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+      appId: import.meta.env.VITE_FIREBASE_APP_ID,
     };
 
+    console.log(firebaseConfig)
     //Initialize Firebase app and authentication
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);

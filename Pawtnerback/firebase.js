@@ -1,14 +1,17 @@
 import admin from "firebase-admin";
 import fs from "fs"; //Import File System module to read local files
+import dotenv from "dotenv";
+dotenv.config()
 
 //Read the Firebase service service accont key from the JSON file
 const serviceAccount = JSON.parse(
   fs.readFileSync(new URL('./pawtnerdb.json', import.meta.url))
 );
 
+console.log(process.env.PORT)
 //Initialize Firebase Admin with storage and authentication 
 admin.initializeApp({
-  storageBucket: "pawtner-b4740.firebasestorage.app",// Firebase storage for file uploads 
+  storageBucket: process.env.STORAGE_BUCKET,// Firebase storage for file uploads 
   credential: admin.credential.cert(serviceAccount) // Authentication using the service accont 
 });
 
