@@ -83,7 +83,7 @@ app.delete("/reports/:id", async (req, res)=>{
 
 
 
-app.put("/animals/:id", async (req, res)=>{
+app.put("/reports/:id", async (req, res)=>{
     try{
         const {id} = req.params;
         const updatedData = req.body;
@@ -107,6 +107,8 @@ app.put("/animals/:id", async (req, res)=>{
         res.status(500).json({error:"Internal Server Error"});
     }
 });
+
+
 
 app.listen(3000, () =>{
     console.log("Server is running on port 3000");

@@ -24,6 +24,7 @@
 }
 
 .report-card{
+    position: relative;
     background: #82aed4;
     display: flex;
     flex-direction: column;
@@ -36,6 +37,26 @@
     min-height: 280px;
     transition: all 0.3s ease-in-out;
 }
+
+.report-card .x {
+    /* position: absolute; */
+    top: 5px;
+    right: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.report-card .edit-icon{
+    top: 5px;
+    right: 35px;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.report-card.edit-mode .toggle-info2{
+    display: none;
+}
+
 
 .extra-info{
     max-height: 0;
@@ -58,6 +79,32 @@
     opacity: 1;
     max-height: 300px;
 }
+
+
+.report-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.report-info label{
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.report-info input,
+.report-info textarea{
+    width: 95%;
+    padding: 5px;
+    border: 1px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+
 
 .image-placeholder{
     width: 200px;
@@ -114,3 +161,5 @@
     margin-top: 5px;
     transition: background 0.3s;
 }
+
+

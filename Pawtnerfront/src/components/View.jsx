@@ -3,6 +3,7 @@ import "../styles/view.css";
 import axios from "axios";
 import { userFirebase } from "../context/FirebaseContext";
 import AnimalMap from "./AnimalMap";
+import { ReportItem } from "./ReportView";
 
 export default function View() {
   const [reports, setReports] = useState([]); //State to store reports
@@ -23,6 +24,13 @@ export default function View() {
 
     fetchData(); //Call the function
   }, []);
+
+
+  function handleUpdate(updatedReport){
+    setReports((prevReports)=>
+      prevReports.map((r)=> (r.id === updatedReport.id ? updatedReport : r))
+    );
+  }
 
   //Handle report deletion
   async function handleDelete(reportId) {
@@ -52,71 +60,16 @@ export default function View() {
 
     if (reportsFromUser.length > 0) {
       return reportsFromUser.map((report) => (
-        <div
-          key={report.id}
-          className={`report-card  ${
-            expandedReport === report.id ? "expanded" : ""
-          }`}
-        >
-          <button className="x" onClick={() => handleDelete(report.id)}>
-            ✖
-          </button>
-
-          <div className="image-placeholder">
-            <img src={report.imageUrl} alt="Animal Report" />
-          </div>
-
-          <div className="report-info">
-            <p>
-              <strong>Type:</strong> {report.type}
-            </p>
-            <p>
-              <strong>Date:</strong>
-              {report.date}
-            </p>
-
-            <div className="extra-info">
-              {expandedReport === report.id && (
-                <>
-                  <p>
-                    <strong>Type:</strong>
-                    {report.type}
-                  </p>
-                  <p>
-                    <strong>Animal:</strong>
-                    {report.animal}
-                  </p>
-                  <p>
-                    <strong>Breed:</strong>
-                    {report.breed}
-                  </p>
-                  <p>
-                    <strong>Date:</strong>
-                    {report.date}
-                  </p>
-                  <p>
-                    <strong>Email:</strong>
-                    {report.email}
-                  </p>
-                  <p>
-                    <strong>Description:</strong>
-                    {report.description}
-                  </p>
-                </>
-              )}
-            </div>
-          </div>
-
-          <button
-            className="toggle-info2"
-            onClick={() => toggleReportDetails(report.id)}
-          >
-            {expandedReport === report.id ? "show Less" : "More Info"}
-          </button>
-        </div>
+        <ReportItem
+        report={report}
+        key={report.id}
+        onUpdate={handleUpdate}
+        onDelete={handleDelete}
+        />
       ));
-    }
 
+    }
+       
     return <p>There is nothing to show</p>;
   }
 
