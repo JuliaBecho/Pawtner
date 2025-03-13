@@ -1,4 +1,4 @@
-import doguinho from '../assets/doguinho.png';
+import doguinho from "../assets/doguinho.png";
 
 export default function Text({ textSectionRef }) {
   return (
@@ -51,11 +51,9 @@ export default function Text({ textSectionRef }) {
       </p>
       <p>Every report, every share,every rescue matters!</p>
 
-     <div className="image-doguinho">
-                <img src={doguinho} alt="img" className='doguinho' />
-                
-                </div>
-
+      <div className="image-doguinho">
+        <img src={doguinho} alt="img" className="doguinho" />
+      </div>
     </div>
   );
 }

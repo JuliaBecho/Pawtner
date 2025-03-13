@@ -33,6 +33,30 @@
     border-radius: 10px;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
     text-align: left;
+    min-height: 280px;
+    transition: all 0.3s ease-in-out;
+}
+
+.extra-info{
+    max-height: 0;
+}
+
+.report-card.expanded{
+    min-height: auto;
+    max-height: 600px;
+}
+
+
+
+
+.report-info .extra-info{
+    display: none;
+}
+
+.report-card.expanded .report-info .extra-info {
+    display: block;
+    opacity: 1;
+    max-height: 300px;
 }
 
 .image-placeholder{
