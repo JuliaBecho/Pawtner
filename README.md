@@ -232,15 +232,21 @@ graph TD;
 ```
 ## **Database Schema Design**
 
-Pawtner stores **user reports** in Firebase Firestore. Reports can include **images**, **animal details**, and **location coordinates**.
+Pawtner allows **authenticated users** to report, view, and delete their own **lost, found, or abused animal reports**.  
+**Unauthenticated users** can **only view** reports but **cannot create or delete them**.
 
 Below is the updated database schema:
 
 ```mermaid
 erDiagram
+    USERS {
+        string UserID PK
+        string Email "Firebase Authenticated Users Only"
+    }
+
     REPORTS {
         string ReportID PK
-        string UserID FK "Authenticated user ID (if available)"
+        string UserID FK "Only the owner can delete"
         string Type "abuse, lost, found"
         string Description
         string ImageURL "Uploaded image link"
@@ -248,7 +254,7 @@ erDiagram
         number Longitude
         string Date
     }
-    
+
     ANIMALS {
         string AnimalID PK
         string ReportID FK
@@ -257,7 +263,9 @@ erDiagram
         string Color
     }
     
+    USERS ||--o{ REPORTS : "Can Submit & Delete Own"
     REPORTS ||--o{ ANIMALS : "Includes"
+
 ```
 
 
