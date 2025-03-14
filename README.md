@@ -30,13 +30,13 @@ Live demo: https://pawtnerfront.onrender.com
    -Users can update their reports 
 
 ## **Technologies Used**
-- **Frontend:** React, Vite, Tailwind CSS
+- **Frontend:** React, Vite, CSS
 - **Backend:** Node.js, Express.js, Firebase Firestore
 - **Authentication:** Firebase Authentication
 - **Database:** Firebase Firestore
 - **Maps API:** Google Maps JavaScript API (@vis.gl/react-google-maps)
 - **State Management:** React Hooks (`useState`, `useEffect`)
-- **Deployment:** Firebase Hosting (optional)
+- **Deployment:** Render
 - **Development Tools:** Postman, VS Code, Git/GitHub
 
 ---
