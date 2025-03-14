@@ -103,22 +103,15 @@ export default function ReportCard({ report }) {
 The backend is built with Node.js + Express.js and connects to Firebase Firestore for data storage.
 
 **API Endpoints**
-| Method | Endpoint                | Description                                                                    |
-|--------|-------------------------|--------------------------------------------------------------------------------|
+| Method | Endpoint                | Description                                                                     |
+|--------|-------------------------|---------------------------------------------------------------------------------|
 | POST   | /reports                | 	Creates a new report, allowing image uploads. Requires authentication (token) |
 | GET    | /reports                | 	Retrieves all reports stored in Firebase Firestore                            |
-| DELETE | /reports/:id            |  Deletes a specific report by ID.                                              |
+| DELETE | /reports/:id            |   Deletes a specific report by ID.                                              |
+| PUT    | /reports/:id            |   Edit the report information                                                   |  
 
 
 ## CRUD operations:
-
-## Users Table
-| Action  | Description                                                   |
-|---------|---------------------------------------------------------------|
-| Create  | Add a new user when they sign up                              |
-| Read    |	Retrieve user details using Firebase Authentication           |
-
-
 
 ## Reports Table
 | Action  | Description                                                    |
@@ -126,14 +119,8 @@ The backend is built with Node.js + Express.js and connects to Firebase Firestor
 | Create  |Add a new report when a user submits one, allowing image uploads|
 | Read    | Retrieve all reports to display on the map or in a list        |
 | Delete  | Remove a report by ID (only for authenticated users)           |
+| Update  | Update the report                                              |
 
-
-## Animals Table
-| Action  | Description                                                   |
-|---------|---------------------------------------------------------------|
-| Create  | Add a new animal when a report is submited                    |
-| Read    | Retrieve animal details (included in reports)                 |
-| Delete  | Remove an animal record                                       |
 
 
 
