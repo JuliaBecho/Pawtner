@@ -18,9 +18,6 @@ Live demo: https://pawtnerfront.onrender.com
    - Users can see all reports plotted on **Google Maps**.
    - Clicking on a marker opens a **detailed view** with an expandable info window.
 
-4. **Anonymous or Authenticated Reporting**  
-   - Users **can submit reports anonymously**.
-   - Logged-in users (via **Firebase Authentication**) can manage and delete their own reports.
 
 5. **Modern UI with React**  
    - Fully responsive and optimized for a seamless user experience.
@@ -223,43 +220,7 @@ graph TD;
     Backend -->|Stores & Retrieves Data| Database(Firebase);
     Backend -->|Google Maps Integration| GoogleMaps;
 ```
-## **Database Schema Design**
 
-Pawtner allows **authenticated users** to report, view, and delete their own **lost, found, or abused animal reports**.  
-**Unauthenticated users** can **only view** reports but **cannot create or delete them**.
-
-Below is the updated database schema:
-
-```mermaid
-erDiagram
-    USERS {
-        string UserID PK
-        string Email "Firebase Authenticated Users Only"
-    }
-
-    REPORTS {
-        string ReportID PK
-        string UserID FK "Only the owner can delete"
-        string Type "abuse, lost, found"
-        string Description
-        string ImageURL "Uploaded image link"
-        number Latitude
-        number Longitude
-        string Date
-    }
-
-    ANIMALS {
-        string AnimalID PK
-        string ReportID FK
-        string Species
-        string Breed
-        string Color
-    }
-    
-    USERS ||--o{ REPORTS : "Can Submit & Delete Own"
-    REPORTS ||--o{ ANIMALS : "Includes"
-
-```
 
 
 ## Home page
