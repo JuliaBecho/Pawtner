@@ -24,7 +24,10 @@ Live demo: https://pawtnerfront.onrender.com
 
 5. **Modern UI with React**  
    - Fully responsive and optimized for a seamless user experience.
-   - **Dark mode support**.
+   - **Dark mode support**
+  
+6. **Update the report**
+   -Users can update their reports 
 
 ## **Technologies Used**
 - **Frontend:** React, Vite, Tailwind CSS
